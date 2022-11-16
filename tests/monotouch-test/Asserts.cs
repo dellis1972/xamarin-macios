@@ -50,8 +50,7 @@ using pfloat = System.Single;
 
 using NUnit.Framework;
 
-public static class Asserts
-{
+public static class Asserts {
 	public static void AreEqual (bool expected, bool actual, string message)
 	{
 		Assert.AreEqual (expected, actual, $"{message} (M) expected: {expected} actual: {actual}");
@@ -122,6 +121,14 @@ public static class Asserts
 		Assert.AreEqual (expected.Y, actual.Y, $"{message} (Y) expected: {expected} actual: {actual}");
 		Assert.AreEqual (expected.Z, actual.Z, $"{message} (Z) expected: {expected} actual: {actual}");
 		Assert.AreEqual (expected.W, actual.W, $"{message} (W) expected: {expected} actual: {actual}");
+	}
+
+	public static void AreEqual (float expectedX, float expectedY, float expectedZ, float expectedW, Vector4 actual, string message)
+	{
+		Assert.AreEqual (expectedX, actual.X, $"{message} (X) expected: {new Vector4 (expectedX, expectedY, expectedZ, expectedW)} actual: {actual}");
+		Assert.AreEqual (expectedY, actual.Y, $"{message} (Y) expected: {new Vector4 (expectedX, expectedY, expectedZ, expectedW)} actual: {actual}");
+		Assert.AreEqual (expectedZ, actual.Z, $"{message} (Z) expected: {new Vector4 (expectedX, expectedY, expectedZ, expectedW)} actual: {actual}");
+		Assert.AreEqual (expectedW, actual.W, $"{message} (W) expected: {new Vector4 (expectedX, expectedY, expectedZ, expectedW)} actual: {actual}");
 	}
 
 	public static void AreEqual (Vector4 expected, Vector4 actual, float delta, string message)
@@ -484,7 +491,7 @@ public static class Asserts
 		AreEqual (expected.M44, actual.M44, $"{message} (M44) expected: {expected} actual: {actual}");
 	}
 
-#region Double Based Types
+	#region Double Based Types
 	public static void AreEqual (double expected, double actual, string message)
 	{
 		Assert.AreEqual (expected, actual, $"{message} (M) expected: {expected} actual: {actual}");
@@ -730,7 +737,7 @@ public static class Asserts
 		AreEqual (expected.M24, actual.M24, $"{message} (M24) expected: {expected} actual: {actual}");
 		AreEqual (expected.M34, actual.M34, $"{message} (M34) expected: {expected} actual: {actual}");
 	}
-#endregion
+	#endregion
 
 #if HAS_SCENEKIT
 	public static void AreEqual (SCNVector3 expected, SCNVector3 actual, string message)
